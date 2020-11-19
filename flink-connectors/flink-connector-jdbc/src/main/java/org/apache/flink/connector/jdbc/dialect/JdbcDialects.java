@@ -30,6 +30,7 @@ public final class JdbcDialects {
 	private static final List<JdbcDialect> DIALECTS = Arrays.asList(
 		new DerbyDialect(),
 		new MySQLDialect(),
+		new OracleDialect(),
 		new PostgresDialect()
 	);
 
