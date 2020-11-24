@@ -21,7 +21,7 @@ public class OracleDialect extends AbstractDialect {
 	// Define MAX/MIN precision of TIMESTAMP type according to Oracle docs:
 	// https://www.techonthenet.com/oracle/datatypes.php
 	private static final int MAX_TIMESTAMP_PRECISION = 9;
-	private static final int MIN_TIMESTAMP_PRECISION = 0;
+	private static final int MIN_TIMESTAMP_PRECISION = 1;
 
 	// Define MAX/MIN precision of DECIMAL type according to Mysql docs:
 	// https://www.techonthenet.com/oracle/datatypes.php
