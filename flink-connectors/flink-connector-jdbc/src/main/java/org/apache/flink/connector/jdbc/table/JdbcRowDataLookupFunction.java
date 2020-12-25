@@ -174,8 +174,24 @@ public class JdbcRowDataLookupFunction extends TableFunction<RowData> {
 
 				try {
 					if (!dbConn.isValid(CONNECTION_CHECK_TIMEOUT_SECONDS)) {
-						statement.close();
-						dbConn.close();
+						if (!statement.isClosed()) {
+							try {
+								statement.close();
+							} catch (SQLException se) {
+								LOG.error("JDBC statement could not be closed: " + se.getMessage());
+							} finally {
+								statement = null;
+							}
+						}
+						if (!dbConn.isClosed()) {
+							try {
+								dbConn.close();
+							} catch (SQLException se) {
+								LOG.error("JDBC connection could not be closed: " + se.getMessage());
+							} finally {
+								dbConn = null;
+							}
+						}
 						establishConnectionAndStatement();
 					}
 				} catch (SQLException | ClassNotFoundException excpetion) {
